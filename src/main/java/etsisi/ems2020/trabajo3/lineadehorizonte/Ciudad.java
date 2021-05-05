@@ -102,48 +102,51 @@ public class Ciudad {
 
 		Punto p1 = new Punto(); // punto donde guardaremos el primer punto del LineaHorizonte s1
 		Punto p2 = new Punto(); // punto donde guardaremos el primer punto del LineaHorizonte s2
-		Punto paux = new Punto();
 		imprimirLineas(s1,s2);
 
 		// Mientras tengamos elementos en s1 y en s2
 		while ((!s1.isEmpty()) && (!s2.isEmpty())) {
-			paux = new Punto(); // Inicializamos la variable paux
 			p1 = s1.getPunto(0); // guardamos el primer elemento de s1
 			p2 = s2.getPunto(0); // guardamos el primer elemento de s2
+			Punto paux = new Punto(); // Inicializamos la variable paux
+			int p1x = p1.getX(); // guardamos el primer elemento de s1
+			int p1y =p1.getY(); // guardamos el primer elemento de s1
+			int p2x = p2.getX(); // guardamos el primer elemento de s2
+			int p2y = p2.getY(); // guardamos el primer elemento de s2
 
-			if (p1.getX() < p2.getX()) // si X del s1 es menor que la X del s2
+			if (p1x < p2x) // si X del s1 es menor que la X del s2
 			{
-				paux.setX(p1.getX()); // guardamos en paux esa X
-				paux.setY(Math.max(p1.getY(), s2y)); // y hacemos que el maximo entre la Y del s1 y la altura previa del
+				paux.setX(p1x); // guardamos en paux esa X
+				paux.setY(Math.max(p1y, s2y)); // y hacemos que el maximo entre la Y del s1 y la altura previa del
 														// s2 sea la altura Y de paux
 				prev=aniadirPuntoSalida(paux,  prev,  salida);
-				s1y = p1.getY(); // actualizamos la altura s1y
+				s1y = p1y; // actualizamos la altura s1y
 				s1.borrarPunto(0); // en cualquier caso eliminamos el punto de s1 (tanto si se añade como si no es
 									// valido)
-			} else if (p1.getX() > p2.getX()) // si X del s1 es mayor que la X del s2
+			} else if (p1x > p2x) // si X del s1 es mayor que la X del s2
 			{
-				paux.setX(p2.getX()); // guardamos en paux esa X
-				paux.setY(Math.max(p2.getY(), s1y)); // y hacemos que el maximo entre la Y del s2 y la altura previa del
+				paux.setX(p2x); // guardamos en paux esa X
+				paux.setY(Math.max(p2y, s1y)); // y hacemos que el maximo entre la Y del s2 y la altura previa del
 														// s1 sea la altura Y de paux
 
 				prev=aniadirPuntoSalida(paux,prev,salida);
-				s2y = p2.getY(); // actualizamos la altura s2y
+				s2y = p2y; // actualizamos la altura s2y
 				s2.borrarPunto(0); // en cualquier caso eliminamos el punto de s2 (tanto si se añade como si no es
 									// valido)
 			} else // si la X del s1 es igual a la X del s2
 			{
-				if ((p1.getY() > p2.getY()) && (p1.getY() != prev)) // guardaremos aquel punto que tenga la altura mas
+				if ((p1y > p2y) && (p1y != prev)) // guardaremos aquel punto que tenga la altura mas
 																	// alta
 				{
 					salida.addPunto(p1);
-					prev = p1.getY();
+					prev = p1y;
 				}
-				else if ((p1.getY() <= p2.getY()) && (p2.getY() != prev)) {
+				else if ((p1y <= p2y) && (p2y != prev)) {
 					salida.addPunto(p2);
-					prev = p2.getY();
+					prev = p2y;
 				}
-				s1y = p1.getY(); // actualizamos la s1y e s2y
-				s2y = p2.getY();
+				s1y = p1y; // actualizamos la s1y e s2y
+				s2y = p2y;
 				s1.borrarPunto(0); // eliminamos el punto del s1 y del s2
 				s2.borrarPunto(0);
 			}
@@ -222,3 +225,4 @@ public class Ciudad {
 		}
 	}
 }
+
