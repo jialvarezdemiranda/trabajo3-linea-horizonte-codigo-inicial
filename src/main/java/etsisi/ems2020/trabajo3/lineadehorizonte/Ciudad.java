@@ -116,12 +116,7 @@ public class Ciudad {
 				paux.setX(p1.getX()); // guardamos en paux esa X
 				paux.setY(Math.max(p1.getY(), s2y)); // y hacemos que el maximo entre la Y del s1 y la altura previa del
 														// s2 sea la altura Y de paux
-
-				if (paux.getY() != prev) // si este maximo no es igual al del segmento anterior
-				{
-					salida.addPunto(paux); // añadimos el punto al LineaHorizonte de salida
-					prev = paux.getY(); // actualizamos prev
-				}
+				prev=aniadirPuntoSalida(paux,  prev,  salida);
 				s1y = p1.getY(); // actualizamos la altura s1y
 				s1.borrarPunto(0); // en cualquier caso eliminamos el punto de s1 (tanto si se añade como si no es
 									// valido)
@@ -131,11 +126,7 @@ public class Ciudad {
 				paux.setY(Math.max(p2.getY(), s1y)); // y hacemos que el maximo entre la Y del s2 y la altura previa del
 														// s1 sea la altura Y de paux
 
-				if (paux.getY() != prev) // si este maximo no es igual al del segmento anterior
-				{
-					salida.addPunto(paux); // añadimos el punto al LineaHorizonte de salida
-					prev = paux.getY(); // actualizamos prev
-				}
+				prev=aniadirPuntoSalida(paux,prev,salida);
 				s2y = p2.getY(); // actualizamos la altura s2y
 				s2.borrarPunto(0); // en cualquier caso eliminamos el punto de s2 (tanto si se añade como si no es
 									// valido)
@@ -158,39 +149,24 @@ public class Ciudad {
 			}
 		}
 		
-		quedanElementos(s1,paux,salida,prev);
-		quedanElementos(s2,paux,salida,prev);
-//		while ((!s1.isEmpty())) // si aun nos quedan elementos en el s1
-//		{
-//			paux = s1.getPunto(0); // guardamos en paux el primer punto
-//
-//			if (paux.getY() != prev) // si paux no tiene la misma altura del segmento previo
-//			{
-//				salida.addPunto(paux); // lo añadimos al LineaHorizonte de salida
-//				prev = paux.getY(); // y actualizamos prev
-//			}
-//			s1.borrarPunto(0); // en cualquier caso eliminamos el punto de s1 (tanto si se añade como si no es
-//								// valido)
-//		}
-//		while ((!s2.isEmpty())) // si aun nos quedan elementos en el s2
-//		{
-//			paux = s2.getPunto(0); // guardamos en paux el primer punto
-//
-//			if (paux.getY() != prev) // si paux no tiene la misma altura del segmento previo
-//			{
-//				salida.addPunto(paux); // lo añadimos al LineaHorizonte de salida
-//				prev = paux.getY(); // y actualizamos prev
-//			}
-//			s2.borrarPunto(0); // en cualquier caso eliminamos el punto de s2 (tanto si se añade como si no es
-//								// valido)
-//		}
+		quedanElementos(s1,salida,prev);
+		quedanElementos(s2,salida,prev);
 		return salida;
 	}
 	
-	private void quedanElementos(LineaHorizonte s1, Punto paux, LineaHorizonte salida, int prev ) {
+	private int aniadirPuntoSalida(Punto paux, int prev, LineaHorizonte salida) {
+		if (paux.getY() != prev) // si este maximo no es igual al del segmento anterior
+		{
+			salida.addPunto(paux); // añadimos el punto al LineaHorizonte de salida
+			prev = paux.getY(); // actualizamos prev
+		}
+		return prev;
+	}
+	
+	private void quedanElementos(LineaHorizonte s1, LineaHorizonte salida, int prev ) {
 		while ((!s1.isEmpty())) // si aun nos quedan elementos en el s1
 		{
-			paux = s1.getPunto(0); // guardamos en paux el primer punto
+			Punto paux = s1.getPunto(0); // guardamos en paux el primer punto
 
 			if (paux.getY() != prev) // si paux no tiene la misma altura del segmento previo
 			{
