@@ -157,6 +157,37 @@ public class Ciudad {
 				s2.borrarPunto(0);
 			}
 		}
+		
+		quedanElementos(s1,paux,salida,prev);
+		quedanElementos(s2,paux,salida,prev);
+//		while ((!s1.isEmpty())) // si aun nos quedan elementos en el s1
+//		{
+//			paux = s1.getPunto(0); // guardamos en paux el primer punto
+//
+//			if (paux.getY() != prev) // si paux no tiene la misma altura del segmento previo
+//			{
+//				salida.addPunto(paux); // lo añadimos al LineaHorizonte de salida
+//				prev = paux.getY(); // y actualizamos prev
+//			}
+//			s1.borrarPunto(0); // en cualquier caso eliminamos el punto de s1 (tanto si se añade como si no es
+//								// valido)
+//		}
+//		while ((!s2.isEmpty())) // si aun nos quedan elementos en el s2
+//		{
+//			paux = s2.getPunto(0); // guardamos en paux el primer punto
+//
+//			if (paux.getY() != prev) // si paux no tiene la misma altura del segmento previo
+//			{
+//				salida.addPunto(paux); // lo añadimos al LineaHorizonte de salida
+//				prev = paux.getY(); // y actualizamos prev
+//			}
+//			s2.borrarPunto(0); // en cualquier caso eliminamos el punto de s2 (tanto si se añade como si no es
+//								// valido)
+//		}
+		return salida;
+	}
+	
+	private void quedanElementos(LineaHorizonte s1, Punto paux, LineaHorizonte salida, int prev ) {
 		while ((!s1.isEmpty())) // si aun nos quedan elementos en el s1
 		{
 			paux = s1.getPunto(0); // guardamos en paux el primer punto
@@ -168,22 +199,8 @@ public class Ciudad {
 			}
 			s1.borrarPunto(0); // en cualquier caso eliminamos el punto de s1 (tanto si se añade como si no es
 								// valido)
-		}
-		while ((!s2.isEmpty())) // si aun nos quedan elementos en el s2
-		{
-			paux = s2.getPunto(0); // guardamos en paux el primer punto
-
-			if (paux.getY() != prev) // si paux no tiene la misma altura del segmento previo
-			{
-				salida.addPunto(paux); // lo añadimos al LineaHorizonte de salida
-				prev = paux.getY(); // y actualizamos prev
-			}
-			s2.borrarPunto(0); // en cualquier caso eliminamos el punto de s2 (tanto si se añade como si no es
-								// valido)
-		}
-		return salida;
 	}
-	
+	}
 	
 	
 	
