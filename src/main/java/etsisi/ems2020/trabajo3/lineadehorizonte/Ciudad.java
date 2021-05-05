@@ -147,7 +147,7 @@ public class Ciudad {
 					salida.addPunto(p1);
 					prev = p1.getY();
 				}
-				if ((p1.getY() <= p2.getY()) && (p2.getY() != prev)) {
+				else if ((p1.getY() <= p2.getY()) && (p2.getY() != prev)) {
 					salida.addPunto(p2);
 					prev = p2.getY();
 				}
@@ -183,6 +183,7 @@ public class Ciudad {
 		}
 		return salida;
 	}
+	
 	
 	
 	
