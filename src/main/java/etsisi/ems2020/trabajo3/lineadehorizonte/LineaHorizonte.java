@@ -60,20 +60,7 @@ public class LineaHorizonte {
     
     public void guardaLineaHorizonte (String fichero)
     {
-        try
-        {
-           Punto p = new Punto();
-            FileWriter fileWriter = new FileWriter(fichero);
-            PrintWriter out = new PrintWriter (fileWriter);
-         
-            for(int i=0; i<this.size(); i++)
-            {
-                p=(getPunto(i));
-                out.print(p.getX() + " " + p.getY() + "\n");
-            }
-            out.close();
-        }
-        catch(Exception e){}
+        Punto.guardarPuntos(fichero,this.LineaHorizonte);
     }
     
     
@@ -235,4 +222,3 @@ public class LineaHorizonte {
 	}
     
 }
-
