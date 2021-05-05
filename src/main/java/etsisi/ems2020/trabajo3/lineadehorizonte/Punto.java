@@ -1,5 +1,9 @@
 package etsisi.ems2020.trabajo3.lineadehorizonte;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
 /*
  * 
  * @author Juan Manuel
@@ -75,5 +79,23 @@ public class Punto {
 		return linea;
 	}
     
+	public static void guardarPuntos (String fichero, ArrayList<Punto> puntos) {
+		
+		try
+        {
+           Punto p = new Punto();
+            FileWriter fileWriter = new FileWriter(fichero);
+            PrintWriter out = new PrintWriter (fileWriter);
+         
+            for(int i=0; i<puntos.size(); i++)
+            {
+                p=(puntos.get(i));
+                out.print(p.getX() + " " + p.getY() + "\n");
+            }
+            out.close();
+        }
+        catch(Exception e){}
+	}
     
 }
+
