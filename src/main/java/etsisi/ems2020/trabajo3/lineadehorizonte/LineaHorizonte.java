@@ -1,6 +1,5 @@
 package etsisi.ems2020.trabajo3.lineadehorizonte;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -73,14 +72,15 @@ public class LineaHorizonte {
             }
             out.close();
         }
-        catch(Exception e){}
+        catch(Exception e){
+        	System.out.println(e.getMessage());
+        }
     }
     
     
     public void imprimir (){
     	
     	for(int i=0; i< LineaHorizonte.size(); i++ ){
-    		//System.out.println("X: " + LineaHorizonte.get(i).getX() + " Y: " + LineaHorizonte.get(i).getY());
     		System.out.println(cadena(i));
     	}
     }

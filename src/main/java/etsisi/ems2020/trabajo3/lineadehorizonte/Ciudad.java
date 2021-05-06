@@ -75,6 +75,7 @@ public class Ciudad {
 				this.addEdificio(new Edificio(xi, y, xd));
 			}
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 
 	}
